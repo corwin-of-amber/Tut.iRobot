@@ -35,6 +35,19 @@ const Board = {
     },
     clear() {
         this.list_walls = [];
+    },
+    go() {
+      var toSend = JSON.stringify({walls: this.list_walls});
+      console.log(toSend);
+      fetch("/json",
+        {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: toSend
+        });
     }
   }
 }

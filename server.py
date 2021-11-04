@@ -1,7 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import logic
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="/ui", static_folder="ui")
 
 @app.route("/")
 def main_page():
@@ -19,3 +19,16 @@ def hello(name):
     Move, RotateRight = logic.initialize_simulation(board)
     logic.irobot_clean(Move, RotateRight)
     return f"Hello, {escape(name)}!"
+
+@app.route("/json", methods=["POST"])
+def get_path():
+    print("WE GOT HERE")
+    print(request.data)
+
+    import json
+    board = json.loads(request.data)
+
+    Move, RotateRight = logic.initialize_simulation(board)
+    logic.irobot_clean(Move, RotateRight)
+
+    return "---"

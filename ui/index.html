@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Turtle iRobot</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/vue@next"></script>
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+   
+    <body>
+        <div>TODO write content</div>
+        <div id="Board">
+            <div>
+                <table>
+                    <tr v-for="y in num_rows" :key="y">
+                        <td v-for="x in num_cols" :key="x" @click="wall(x,y)"
+                          v-bind:class="{wall: isWall(x,y)}"> {{x}},{{y}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="toolbar">
+                <button @click="clear">Clear</button>
+            </div>
+            
+        </div>
+    </body>
+     
+    
+    <script src="main.js"></script>
+
+</html>
